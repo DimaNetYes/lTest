@@ -17,7 +17,8 @@
                         <td>Описание</td>
                         <td>Действия</td>
                     </tr>
-                    @foreach($recipe as $val)
+
+                    @foreach($recipes as $val)
                         <tr>
                             <td>{{$val->name}}</td>
                             <td>{{$val->description}}</td>
@@ -25,7 +26,7 @@
                                 <a href="" class="bi bi-alert-triangle">
                                     <img src="https://img.icons8.com/ios/50/000000/search--v1.png">
                                 </a>
-                                <a href="">
+                                <a href="{{route('recipe')}}">
                                     <img src="https://img.icons8.com/ios/50/000000/edit.png">
                                 </a>
                                 <a href="">
