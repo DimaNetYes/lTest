@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRecipe extends Migration
+class CreateUserRecipeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,9 @@ class CreateUserRecipe extends Migration
     {
         Schema::create('user_recipe', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('recipe_id');
+            $table->bigInteger('recipe_id')->unsigned()->nullable();
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->timestamps();
         });
