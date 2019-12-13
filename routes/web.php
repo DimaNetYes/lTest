@@ -20,7 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/recipe', 'RecipeController@index')->name('recipe');
 
-Route::post('/recipe', 'RecipeController@create')->name('createRecipe');
+Route::get('/showRecipe', array('as' => 'showRecipe', 'uses' => 'Instruments\ShowRecipeController@index'));
 
+Route::post('/recipe', ['as' => 'createRecipe', 'uses' => 'RecipeController@create']);
 
+Route::post('/ingredientController', 'Setting\IngredientController@add');
 

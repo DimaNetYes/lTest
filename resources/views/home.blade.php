@@ -23,7 +23,7 @@
                             <td>{{$val->name}}</td>
                             <td>{{$val->description}}</td>
                             <td>
-                                <a href="" class="bi bi-alert-triangle">
+                                <a href="{{route('showRecipe')}}" class="bi bi-alert-triangle">
                                     <img src="https://img.icons8.com/ios/50/000000/search--v1.png">
                                 </a>
                                 <a href="{{route('recipe')}}">

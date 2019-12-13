@@ -1,0 +1,42 @@
+#module_ingredient{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+#ingredient{
+    border: 1px solid black;
+    width: 700px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: white;
+    /*display: none;*/
+}
+
+#ingredient form{
+    margin-top: 50px;
+}
+
+#ingredient form input[type=text]{
+    margin-left: 50px;
+}
+#ingredient form input[type=submit]{
+    width: 150px;
+    margin-left: 350px;
+}
+
+
+
+
+
+
+
+
