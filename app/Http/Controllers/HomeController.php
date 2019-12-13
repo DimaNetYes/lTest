@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::find(1);
+        $user = User::find(auth()->user()->id);  //возвращаю рецепты текущего пользователя
         $recipes = $user->recipes;
 
         return view('home', compact('recipes'));
