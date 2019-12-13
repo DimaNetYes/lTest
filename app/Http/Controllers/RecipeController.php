@@ -32,10 +32,10 @@ class RecipeController extends Controller
 
             $user_recipe->insert(['user_id' => auth()->user()->id, 'recipe_id' => $recipe->get('id')->last()->id]); //вставка в DB:user_recipe
 
-            $ingredient_quantity = $request->only(['ingredients', 'quantity']); 
+            $ingredient_quantity = $request->only(['ingredients', 'quantity']);
             $index = 0;
-            foreach ($ingredient_quantity as $key => $elem){
-                 $recipe_ingredient->insert(['recipe_id' => $recipe->get('id')->last()->id, 'ingredient_id' => $ingredient_quantity['ingredients'][$index], 'quantity' => $ingredient_quantity['quantity'][$index++]]); //в DB:recipe_ingredien
+            foreach ($ingredient_quantity['ingredients'] as $key => $elem){
+                    $recipe_ingredient->insert(['recipe_id' => $recipe->get('id')->last()->id, 'ingredient_id' => $ingredient_quantity['ingredients'][$index], 'quantity' => $ingredient_quantity['quantity'][$index++]]); //в DB:recipe_ingredien
             }
         }
 
