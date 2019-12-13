@@ -17,20 +17,20 @@
                     <textarea name="desc" id="" cols="30" rows="10"></textarea>
                     <hr>
 
-                    <select name="ingredients" id="">     //Нужно в select подтягивать option ингредиенты
+                    <select name="ingredients[]" id="">     //Нужно в select подтягивать option ингредиенты
                         @foreach($ingredients as $val)
                             <option value="{{$val->id}}">{{$val->name}}</option>
                         @endforeach
                     </select>
-                    <input type="text" required style="width:100px;">
+                    <input type="text" name="quantity[]" required style="width:100px;">
                     <button class="cross">X</button><br><br>
 
-                    <select name="ingredients1" id="">     //Нужно в select подтягивать option ингредиенты
+                    <select name="ingredients[]" id="">     //Нужно в select подтягивать option ингредиенты
                         @foreach($ingredients as $val)
                             <option value="{{$val->id}}">{{$val->name}}</option>
                         @endforeach
                     </select>
-                    <input type="text" required style="width:100px;">
+                    <input type="text" name="quantity[]" required style="width:100px;">
                     <button class="cross">X</button><br><br>
 
                     <button id="addSelectIngredient">Добавить</button>
