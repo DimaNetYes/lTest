@@ -17,7 +17,7 @@ class CreateUserRecipeTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('recipe_id')->unsigned()->nullable();
+            $table->bigInteger('recipe_id')->unsigned()->onDelete('recipe');
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->timestamps();
         });

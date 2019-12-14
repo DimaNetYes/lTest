@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <button id="addSelectIngredient" onclick="addIngredient()">Добавить</button>
+                    <input type="button" id="addSelectIngredient" onclick="addIngredient()" value="Добавить">
                     <hr>
                     <input name="submit" type="submit" value="Сохранить рецепт">
                 </form>

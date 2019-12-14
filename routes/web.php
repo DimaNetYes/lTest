@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/recipe', 'RecipeController@index')->name('recipe');
 
 Route::get('/showRecipe', array('as' => 'showRecipe', 'uses' => 'Instruments\ShowRecipeController@index'));
+Route::get('/deleteRecipe', array('as' => 'deleteRecipe', 'uses' => 'Instruments\DeleteRecipeController@index'));
 
 Route::post('/recipe', ['as' => 'createRecipe', 'uses' => 'RecipeController@create']);
 

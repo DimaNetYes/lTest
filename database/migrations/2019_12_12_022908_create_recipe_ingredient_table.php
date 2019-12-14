@@ -15,9 +15,9 @@ class CreateRecipeIngredientTable extends Migration
     {
         Schema::create('recipe_ingredient', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('recipe_id')->unsigned()->nullable();
+            $table->bigInteger('recipe_id')->unsigned()->onDelete('recipe');
             $table->foreign('recipe_id')->references('id')->on('recipes');
-            $table->bigInteger('ingredient_id')->unsigned()->nullable();
+            $table->bigInteger('ingredient_id')->unsigned()->onDelete('ingredient');
             $table->foreign('ingredient_id')->references('id')->on('ingredients');
             $table->string('quantity');
             $table->timestamps();

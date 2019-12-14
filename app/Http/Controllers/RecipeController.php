@@ -14,7 +14,7 @@ class RecipeController extends Controller
     //
     public function index()
     {
-        $ingredients = Ingredient::all();
+        $ingredients = Ingredient::where("user_id", auth()->user()->id)->get();
 
         return view("setting.create", compact('ingredients'));
     }
