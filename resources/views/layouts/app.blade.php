@@ -19,12 +19,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/css.css') }}" rel="stylesheet">
     @stack('csss')
     <style>
         img{
             width: 30px;
             height: 30px;
             margin-left: 10px;
+        }
+        .delimiter{
+            border-right: 3px solid black;
+            height: 90vh;
         }
     </style>
 </head>

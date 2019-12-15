@@ -19,7 +19,7 @@ class CreateRecipeIngredientTable extends Migration
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->bigInteger('ingredient_id')->unsigned()->onDelete('ingredient');
             $table->foreign('ingredient_id')->references('id')->on('ingredients');
-            $table->string('quantity');
+            $table->string('quantity')->nullable()->default('');
             $table->timestamps();
         });
     }
