@@ -36,7 +36,7 @@ class IngredientController extends Controller
             $ingredient->name = $request->ingredient;
             $ingredient->user_id = auth()->user()->id;
             $ingredient->save();
-            
+
             if(isset($request->hiddenTitle) || isset($request->hiddenDesc)){ //поля другой формы
                 $hiddenTitle = $request->hiddenTitle;
                 $hiddenDesc = $request->hiddenDesc;
