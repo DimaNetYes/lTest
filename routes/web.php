@@ -22,9 +22,13 @@ Route::get('/recipe', 'RecipeController@index')->name('recipe');
 Route::post('/recipe', ['as' => 'createRecipe', 'uses' => 'RecipeController@create']);
 
 Route::get('/showRecipe', array('as' => 'showRecipe', 'uses' => 'Instruments\ShowRecipeController@index'));
+Route::get('/editRecipe', 'Instruments\EditRecipeController@index')->name('edit');
+Route::post('/editRecipe', 'Instruments\EditRecipeController@edit')->name('editRecipe');
 Route::get('/deleteRecipe', array('as' => 'deleteRecipe', 'uses' => 'Instruments\DeleteRecipeController@index'));
 
 Route::post('/ingredientController', 'Setting\IngredientController@add');
 
 Route::get('lists/ingredients', 'Lists\IngredientListController@index')->name('ingredients');
 Route::get('lists/createIngredient', function(){return view('lists.createIngredient');});
+
+

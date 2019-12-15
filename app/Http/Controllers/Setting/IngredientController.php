@@ -19,6 +19,13 @@ class IngredientController extends Controller
             $ingredient->user_id = auth()->user()->id;
             $ingredient->save();
             return redirect("lists/ingredients");
+        }else if($request->main == 2){
+            $ingredient = new Ingredient();
+            $ingredient->name = $request->ingredient;
+//        dd($request);
+            $ingredient->user_id = auth()->user()->id;
+            $ingredient->save();
+            return redirect()->route("editRecipe", ['recipe_id' => $request->recipe_id]);
         }else {
             $ingredient = new Ingredient();
             $ingredient->name = $request->ingredient;

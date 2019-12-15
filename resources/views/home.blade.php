@@ -26,7 +26,7 @@
                                 <a href="{{route('showRecipe', ['recipe_id' => $val->id])}}" class="bi bi-alert-triangle">
                                     <img src="https://img.icons8.com/ios/50/000000/search--v1.png">
                                 </a>
-                                <a href="{{route('recipe')}}">
+                                <a href="{{route('edit', ['recipe_id' => $val->id])}}">
                                     <img src="https://img.icons8.com/ios/50/000000/edit.png">
                                 </a>
                                 <a href="{{route('deleteRecipe', ['recipe_id' => $val->id])}}">
