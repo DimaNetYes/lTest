@@ -27,12 +27,13 @@
             </div>
             <div class="col">
                 <p>Добавление рецепта</p>
-                <form action="{{route('createRecipe')}}" method="POST">
+
+                <form action="{{route('createRecipe')}}" method="POST" name="create">
                     {{ csrf_field() }}
                     <lavel>Название</lavel>
-                    <input name="title" value="{{old('title')}}" required><br><br>
-                    <label for="">Описание</label>
-                    <textarea name="desc" id="" cols="30" rows="10"></textarea>
+                    <input name="title" value="{{session('hiddenTitle')}}" required><br><br>
+                    <label for="d">Описание</label>
+                    <textarea name="desc" id="d" cols="30" rows="10">{{session('hiddenDesc')}}</textarea>
                     <hr>
                     <div id="selects">
                         <div class="wrap">
@@ -57,10 +58,10 @@
         <div id="module_ingredient" data-set="1">
             <div id="ingredient">
                 <h3>Добавление ингредиента</h3>
-                <form action="{{action('Setting\IngredientController@add')}}" method="post">
+                <form action="{{action('Setting\IngredientController@add')}}" method="post" id="upForm">
                     {{csrf_field()}}
                     <label for="">Название</label>
-                    <input type="text" name="ingredient">
+                    <input type="text" name="ingredient" value="{{old('ingredient')}}">
                     <hr>
                     <input type="submit" value="Сохранить">
                 </form>
@@ -75,6 +76,7 @@
             select.name = "ingredients[]";
             let inp = document.createElement('input');
             inp.name = "quantity[]";
+            inp.setAttribute('style', 'margin-left:5px;');
             let btn = document.createElement('button');
             btn.className = "cross";
             btn.innerHTML = "X";
@@ -108,6 +110,7 @@
         }
 
         function showIngredient(){
+
             let moduleIngredient = document.getElementById('module_ingredient');
             moduleIngredient.style.display = "block";
             moduleIngredient.addEventListener('click', function(){
@@ -115,6 +118,22 @@
                     moduleIngredient.style.display = "none";
                 }
             });
+
+            let inpTitle = document.forms['create'].elements.title.value; //сохранение формы create
+            let inpDesc = document.forms['create'].elements.desc.value;
+            if(inpTitle != '' || inpDesc != '') {
+                let inpHiddenTitle = document.createElement('input');  //сохранение данных предыдущей формы
+                inpHiddenTitle.setAttribute('type', 'hidden');
+                inpHiddenTitle.setAttribute('name', 'hiddenTitle');
+                inpHiddenTitle.setAttribute('value', inpTitle);
+                let inpHiddenDesc = document.createElement('input');
+                inpHiddenDesc.setAttribute('type', 'hidden');
+                inpHiddenDesc.setAttribute('name', 'hiddenDesc');
+                inpHiddenDesc.setAttribute('value', inpDesc);
+                let appendInp = document.getElementById('upForm');
+                appendInp.insertAdjacentElement('afterbegin', inpHiddenTitle);
+                appendInp.insertAdjacentElement('afterbegin', inpHiddenDesc);
+            }
         }
     </script>
 @endsection

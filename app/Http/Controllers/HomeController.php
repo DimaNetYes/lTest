@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
         $user = User::find(auth()->user()->id);  //возвращаю рецепты текущего пользователя
         $recipes = $user->recipes;
 

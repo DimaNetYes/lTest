@@ -11,28 +11,37 @@ class IngredientController extends Controller
 {
     public function add(Request $request)
     {
+        $request->flash();
         if($request->ingredient == null){
+            if(isset($request->hiddenTitle) || isset($request->hiddenDesc)){ //поля другой формы
+                $hiddenTitle = $request->hiddenTitle;
+                $hiddenDesc = $request->hiddenDesc;
+                return redirect("recipe")->with('hiddenTitle', $hiddenTitle)->with('hiddenDesc', $hiddenDesc);
+            }
             return redirect("recipe");
         }else if($request->main == 1){
             $ingredient = new Ingredient();
             $ingredient->name = $request->ingredient;
-//        dd($request->ingredient);
             $ingredient->user_id = auth()->user()->id;
             $ingredient->save();
             return redirect("lists/ingredients");
         }else if($request->main == 2){
             $ingredient = new Ingredient();
             $ingredient->name = $request->ingredient;
-//        dd($request);
             $ingredient->user_id = auth()->user()->id;
             $ingredient->save();
             return redirect()->route("editRecipe", ['recipe_id' => $request->recipe_id]);
         }else {
             $ingredient = new Ingredient();
             $ingredient->name = $request->ingredient;
-//        dd($request->ingredient);
             $ingredient->user_id = auth()->user()->id;
             $ingredient->save();
+            
+            if(isset($request->hiddenTitle) || isset($request->hiddenDesc)){ //поля другой формы
+                $hiddenTitle = $request->hiddenTitle;
+                $hiddenDesc = $request->hiddenDesc;
+                return redirect("recipe")->with('hiddenTitle', $hiddenTitle)->with('hiddenDesc', $hiddenDesc);
+            }
             return redirect("recipe");
         }
     }

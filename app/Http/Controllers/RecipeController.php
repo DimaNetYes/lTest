@@ -21,6 +21,7 @@ class RecipeController extends Controller
 
     public function create(Request $request)
     {
+        $request->flash();
         $recipe = new Recipe; //DB:recipe
         $user_recipe = DB::table('user_recipe'); //DB:user_recipe
         $recipe_ingredient = DB::table('recipe_ingredient'); //DB
