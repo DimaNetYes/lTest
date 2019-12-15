@@ -17,13 +17,14 @@
                         <td>Меню</td>
                         <td>Действия</td>
                     </tr>
+                    {{--{{dd($ingredients)}}--}}
                     @foreach($ingredients as $val)
                     <tr>
                         <td style="width: 80%;">{{$val->name}}</td>
-                        <td><a href="{{route('recipe')}}">
+                        <td><a href="{{route('lists/editIngredient', ['ingredient_id' => $val->id])}}">
                                 <img src="https://img.icons8.com/ios/50/000000/edit.png">
                             </a>
-                            <a href="{{route('deleteRecipe', ['recipe_id' => $val->id])}}">
+                            <a href="{{route('lists/deleteIngredient', ['ingredient_id' => $val->id])}}">
                                 <img src="https://img.icons8.com/ios/50/000000/delete-sign.png">
                             </a>
                         </td>

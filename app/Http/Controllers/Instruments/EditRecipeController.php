@@ -12,7 +12,6 @@ class EditRecipeController extends Controller
 {
     public function index(Request $request)
     {
-//        dd($request);
         $ingredients = Ingredient::where("user_id", auth()->user()->id)->get();
 
         $recipeDB = new Recipe();
@@ -36,8 +35,7 @@ class EditRecipeController extends Controller
         $current_rec_ingr = $recipe_ingredient->where('recipe_id', $request->recipe_id)->get(); //Текущий recipe_ingredient массив с полями
 
         $count_ingredients = $request->ingredients; //кол-во пришедших ингредиентов
-//dd($current_rec_ingr);
-//        dd($current_rec_ingr);
+
         if($request->has('submit')){ //Если форма отправлена
             $recipe->name = $request->input('title');
             $recipe->description = $request->input('desc');
@@ -60,13 +58,17 @@ class EditRecipeController extends Controller
                     DB::table('recipe_ingredient')->insert(['recipe_id' => $request->recipe_id, 'ingredient_id' => $request->ingredients[$i], 'quantity' => $request->quantity[$i]]);
                 }
 
-            }else if(count($count_ingredients) > count($current_rec_ingr) ){
-
-
-
+            }else if(count($count_ingredients) < count($current_rec_ingr) ){
+                $dels = count($current_rec_ingr) - count($count_ingredients); //кол-во удаляемых элементов
+                for ($i = 0; $i < $dels; $i++){
+                    DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->where('id', $current_rec_ingr[$i]->id)->delete();
+                }
+                $cnt = DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->get();
+                foreach ($cnt as $key => $val){
+                    DB::table('recipe_ingredient')->where('id', $val->id)->update(['ingredient_id' => $request->ingredients[$key], 'quantity' => $request->quantity[$key]]);
+                }
+//                dd(count(DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->get()));
             }
-//            dd();
-
         }
 
         return redirect('home');  //перенаправляем на home что бы HomeController@index подтянул с базы рецепты
