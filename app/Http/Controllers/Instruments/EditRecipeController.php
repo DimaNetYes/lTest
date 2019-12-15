@@ -37,7 +37,7 @@ class EditRecipeController extends Controller
 
         $count_ingredients = $request->ingredients; //кол-во пришедших ингредиентов
 //dd($current_rec_ingr);
-        dd($current_rec_ingr);
+//        dd($current_rec_ingr);
         if($request->has('submit')){ //Если форма отправлена
             $recipe->name = $request->input('title');
             $recipe->description = $request->input('desc');
