@@ -26,7 +26,7 @@ class RecipeController extends Controller
         $user_recipe = DB::table('user_recipe'); //DB:user_recipe
         $recipe_ingredient = DB::table('recipe_ingredient'); //DB
 
-        if($request->has('submit')){ //Если форма отправлена
+        if ($request->has('submit')) { //Если форма отправлена
             $recipe->name = $request->input('title');
             $recipe->description = $request->input('desc');
             $recipe->save();
@@ -35,8 +35,8 @@ class RecipeController extends Controller
 
             $ingredient_quantity = $request->only(['ingredients', 'quantity']);
             $index = 0;
-            foreach ($ingredient_quantity['ingredients'] as $key => $elem){
-                    $recipe_ingredient->insert(['recipe_id' => $recipe->get('id')->last()->id, 'ingredient_id' => $ingredient_quantity['ingredients'][$index], 'quantity' => $ingredient_quantity['quantity'][$index++]]); //в DB:recipe_ingredien
+            foreach ($ingredient_quantity['ingredients'] as $key => $elem) {
+                $recipe_ingredient->insert(['recipe_id' => $recipe->get('id')->last()->id, 'ingredient_id' => $ingredient_quantity['ingredients'][$index], 'quantity' => $ingredient_quantity['quantity'][$index++]]); //в DB:recipe_ingredien
             }
         }
 

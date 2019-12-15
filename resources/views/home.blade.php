@@ -32,23 +32,24 @@
                         <td>Действия</td>
                     </tr>
                     @if(isset($recipes))
-                    @foreach($recipes as $val)
-                        <tr>
-                            <td>{{$val->name}}</td>
-                            <td style="max-width: 300px; white-space: pre-wrap; word-wrap: break-word;">{{$val->description}}</td>
-                            <td style="width: 180px;">
-                                <a href="{{route('showRecipe', ['recipe_id' => $val->id])}}" class="bi bi-alert-triangle">
-                                    <img src="https://img.icons8.com/ios/50/000000/search--v1.png">
-                                </a>
-                                <a href="{{route('edit', ['recipe_id' => $val->id])}}">
-                                    <img src="https://img.icons8.com/ios/50/000000/edit.png">
-                                </a>
-                                <a href="{{route('deleteRecipe', ['recipe_id' => $val->id])}}">
-                                    <img src="https://img.icons8.com/ios/50/000000/delete-sign.png">
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
+                        @foreach($recipes as $val)
+                            <tr>
+                                <td>{{$val->name}}</td>
+                                <td style="max-width: 300px; white-space: pre-wrap; word-wrap: break-word;">{{$val->description}}</td>
+                                <td style="width: 180px;">
+                                    <a href="{{route('showRecipe', ['recipe_id' => $val->id])}}"
+                                       class="bi bi-alert-triangle">
+                                        <img src="https://img.icons8.com/ios/50/000000/search--v1.png">
+                                    </a>
+                                    <a href="{{route('edit', ['recipe_id' => $val->id])}}">
+                                        <img src="https://img.icons8.com/ios/50/000000/edit.png">
+                                    </a>
+                                    <a href="{{route('deleteRecipe', ['recipe_id' => $val->id])}}">
+                                        <img src="https://img.icons8.com/ios/50/000000/delete-sign.png">
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     @endif
                 </table>
 

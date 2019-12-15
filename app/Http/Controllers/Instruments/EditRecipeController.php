@@ -36,35 +36,35 @@ class EditRecipeController extends Controller
 
         $count_ingredients = $request->ingredients; //кол-во пришедших ингредиентов
 
-        if($request->has('submit')){ //Если форма отправлена
+        if ($request->has('submit')) { //Если форма отправлена
             $recipe->name = $request->input('title');
             $recipe->description = $request->input('desc');
             $recipe->save();
 
 
-            if(count($current_rec_ingr) == count($count_ingredients)){  //Если при update пользователь не добавил ингредиенты
+            if (count($current_rec_ingr) == count($count_ingredients)) {  //Если при update пользователь не добавил ингредиенты
 
-                foreach($current_rec_ingr as $key => $val){
+                foreach ($current_rec_ingr as $key => $val) {
                     DB::table('recipe_ingredient')->where('id', $val->id)->update(['ingredient_id' => $request->ingredients[$key], 'quantity' => $request->quantity[$key]]);
                 }
 
-            }else if(count($count_ingredients) > count($current_rec_ingr) ){
+            } else if (count($count_ingredients) > count($current_rec_ingr)) {
 
-                foreach($current_rec_ingr as $key => $val){
+                foreach ($current_rec_ingr as $key => $val) {
                     DB::table('recipe_ingredient')->where('id', $val->id)->update(['ingredient_id' => $request->ingredients[$key], 'quantity' => $request->quantity[$key]]);
                 }
 
-                for($i = count($current_rec_ingr); $i < count($count_ingredients); $i++) {
+                for ($i = count($current_rec_ingr); $i < count($count_ingredients); $i++) {
                     DB::table('recipe_ingredient')->insert(['recipe_id' => $request->recipe_id, 'ingredient_id' => $request->ingredients[$i], 'quantity' => $request->quantity[$i]]);
                 }
 
-            }else if(count($count_ingredients) < count($current_rec_ingr) ){
+            } else if (count($count_ingredients) < count($current_rec_ingr)) {
                 $dels = count($current_rec_ingr) - count($count_ingredients); //кол-во удаляемых элементов
-                for ($i = 0; $i < $dels; $i++){
+                for ($i = 0; $i < $dels; $i++) {
                     DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->where('id', $current_rec_ingr[$i]->id)->delete();
                 }
                 $cnt = DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->get();
-                foreach ($cnt as $key => $val){
+                foreach ($cnt as $key => $val) {
                     DB::table('recipe_ingredient')->where('id', $val->id)->update(['ingredient_id' => $request->ingredients[$key], 'quantity' => $request->quantity[$key]]);
                 }
 //                dd(count(DB::table('recipe_ingredient')->where('recipe_id', $request->recipe_id)->get()));

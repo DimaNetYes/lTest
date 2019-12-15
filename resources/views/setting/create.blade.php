@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('head')
     @push('csss')
-    <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/create.css') }}" rel="stylesheet">
     @endpush
 @endsection
 @section('content')
@@ -37,13 +37,14 @@
                     <hr>
                     <div id="selects">
                         <div class="wrap">
-                            <select name="ingredients[]">     //Нужно в select подтягивать option ингредиенты
+                            <select name="ingredients[]"> //Нужно в select подтягивать option ингредиенты
                                 @foreach($ingredients as $val)
                                     <option value="{{$val->id}}">{{$val->name}}</option>
                                 @endforeach
                             </select>
                             <input type="text" name="quantity[]" required style="width:100px;">
-                            <button class="cross">X</button><br><br>
+                            <button class="cross">X</button>
+                            <br><br>
                         </div>
                     </div>
 
@@ -51,7 +52,9 @@
                     <hr>
                     <input name="submit" type="submit" value="Сохранить рецепт">
                 </form>
-                <button style="position:absolute; top:425px; left: 320px;" onclick="showIngredient()">Создать новый ингредиент</button>
+                <button style="position:absolute; top:425px; left: 320px;" onclick="showIngredient()">Создать новый
+                    ингредиент
+                </button>
 
             </div>
         </div>
@@ -109,19 +112,19 @@
             this.parentNode.remove();
         }
 
-        function showIngredient(){
+        function showIngredient() {
 
             let moduleIngredient = document.getElementById('module_ingredient');
             moduleIngredient.style.display = "block";
-            moduleIngredient.addEventListener('click', function(){
-                if(event.target.dataset.set == 1){
+            moduleIngredient.addEventListener('click', function () {
+                if (event.target.dataset.set == 1) {
                     moduleIngredient.style.display = "none";
                 }
             });
 
             let inpTitle = document.forms['create'].elements.title.value; //сохранение формы create
             let inpDesc = document.forms['create'].elements.desc.value;
-            if(inpTitle != '' || inpDesc != '') {
+            if (inpTitle != '' || inpDesc != '') {
                 let inpHiddenTitle = document.createElement('input');  //сохранение данных предыдущей формы
                 inpHiddenTitle.setAttribute('type', 'hidden');
                 inpHiddenTitle.setAttribute('name', 'hiddenTitle');

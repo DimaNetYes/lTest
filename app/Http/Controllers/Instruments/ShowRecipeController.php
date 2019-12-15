@@ -14,7 +14,7 @@ class ShowRecipeController extends Controller
         $recipe = Recipe::find($request->input('recipe_id'));
 //        $recipeTable = $recipe->where('id', $request->input('recipe_id'))->get();
         $ingredients = $recipe->ingredients;
-        $quantity = DB::table('recipe_ingredient')->select("quantity")->where("recipe_id", $recipe->id)->get(); //warning
+        $quantity = DB::table('recipe_ingredient')->select("quantity")->where("recipe_id", $recipe->id)->get(); //superlogic
 
         return view('instruments.showRecipe', compact('recipe', 'ingredients', 'quantity'));
     }

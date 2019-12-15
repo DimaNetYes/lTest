@@ -38,28 +38,32 @@
                     <hr>
                     <div id="selects">
                         <?php $superlogic = 0; ?>
-                            @foreach($ingredientsAll as $elem)
-                                <div class="wrap">
-                                    <select name="ingredients[]">
-                                        @foreach($ingredients as $val)
-                                            @if($val->id == $elem->id)
-                                                <option value="{{$val->id}}" selected>{{$val->name}}</option>
-                                            @else
-                                                <option value="{{$val->id}}">{{$val->name}}</option>
-                                            @endif
-                                        @endforeach
-                                    <input type="text" name="quantity[]" value="{{$quantity[$superlogic++]->quantity}}" required style="width:100px;">
-                                    <input type="button" class="cross" value="X" onclick="deleteIngredeient(this)"><br><br>
-                                    </select>
-                                </div>
-                            @endforeach
+                        @foreach($ingredientsAll as $elem)
+                            <div class="wrap">
+                                <select name="ingredients[]">
+                                    @foreach($ingredients as $val)
+                                        @if($val->id == $elem->id)
+                                            <option value="{{$val->id}}" selected>{{$val->name}}</option>
+                                        @else
+                                            <option value="{{$val->id}}">{{$val->name}}</option>
+                                        @endif
+                                    @endforeach
+                                    <input type="text" name="quantity[]" value="{{$quantity[$superlogic++]->quantity}}"
+                                           required style="width:100px;">
+                                    <input type="button" class="cross" value="X"
+                                           onclick="deleteIngredeient(this)"><br><br>
+                                </select>
+                            </div>
+                        @endforeach
                     </div>
 
                     <input type="button" id="addSelectIngredient" onclick="addIngredient()" value="Добавить">
                     <hr>
                     <input name="submit" type="submit" value="Сохранить рецепт">
                 </form>
-                <button style="position:absolute; top:425px; left: 320px;" onclick="showIngredient()">Создать новый ингредиент</button>
+                <button style="position:absolute; top:425px; left: 320px;" onclick="showIngredient()">Создать новый
+                    ингредиент
+                </button>
 
             </div>
         </div>
@@ -119,11 +123,11 @@
             // console.log(event.target.parentNode);
         }
 
-        function showIngredient(){
+        function showIngredient() {
             let moduleIngredient = document.getElementById('module_ingredient');
             moduleIngredient.style.display = "block";
-            moduleIngredient.addEventListener('click', function(){
-                if(event.target.dataset.set == 1){
+            moduleIngredient.addEventListener('click', function () {
+                if (event.target.dataset.set == 1) {
                     moduleIngredient.style.display = "none";
                 }
             });

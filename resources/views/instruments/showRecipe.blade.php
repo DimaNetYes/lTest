@@ -34,10 +34,10 @@
                     <tbody>
                     <?php $superlogic = 0;?>
                     @foreach($ingredients as $val)
-                    <tr>
-                        <th scope="row">{{$val->name}}</th>
-                        <td>{{$quantity[$superlogic++]->quantity}}</td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{$val->name}}</th>
+                            <td>{{$quantity[$superlogic++]->quantity}}</td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

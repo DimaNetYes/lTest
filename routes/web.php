@@ -29,7 +29,9 @@ Route::get('/deleteRecipe', array('as' => 'deleteRecipe', 'uses' => 'Instruments
 Route::post('/ingredientController', 'Setting\IngredientController@add');
 
 Route::get('lists/ingredients', 'Lists\IngredientListController@index')->name('ingredients');
-Route::get('lists/createIngredient', function(){return view('lists.createIngredient');});
+Route::get('lists/createIngredient', function () {
+    return view('lists.createIngredient');
+});
 
 Route::get('lists/editIngredient', 'Setting\IngredientController@index')->name('lists/editIngredient');
 Route::post('lists/ingredients', 'Setting\IngredientController@edit');
