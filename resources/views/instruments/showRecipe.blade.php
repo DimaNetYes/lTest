@@ -24,7 +24,12 @@
             </div>
             <div class="col-8" style="word-break: break-word;">
                 <div class="wrapper_showRecipe">
-                    <div class="recipeName" style="font-weight: bold;">{{$recipe->name}}</div>
+                    <div>
+                        <div class="recipeName" style="font-weight: bold; display:inline-block;">{{$recipe->name}}</div>
+                            <a href="{{route('edit', ['recipe_id' => $recipe->id])}}">
+                                <img src="https://img.icons8.com/ios/50/000000/edit.png">
+                            </a>
+                        </div>
                     <div class="recipeDesc" style="margin-top: 40px;">{{$recipe->description}}</div>
                 </div>
 
