@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Ingredient;
 use Illuminate\Support\Facades\DB;
+use App\Recipe;
 
 class IngredientController extends Controller
 {
+
     public function add(Request $request)
     {
         $request->flash();
@@ -65,6 +67,26 @@ class IngredientController extends Controller
         Ingredient::find($request->ingredient_id)->delete();
 //        dd($request);
         return redirect('lists/ingredients');
+    }
+
+    public function editQuantity(Request $request)
+    {
+        $recipe_ingredient = explode(",", $request->recipe_ingredient);
+        $recipe_id = $recipe_ingredient[0];
+        $ingredient_id = $recipe_ingredient[1];
+        $el_val = $recipe_ingredient[2];
+
+        DB::table('recipe_ingredient')->where('recipe_id', $recipe_id)->where('ingredient_id', $ingredient_id)->update( ['quantity' => $el_val]);
+//        return redirect('home');
+
+        $recipe = Recipe::find($recipe_id);
+        $ingredients = $recipe->ingredients;
+        $quantity = DB::table('recipe_ingredient')->select("quantity")->where("recipe_id", $recipe_id)->get(); //superlogic
+
+        return view('instruments.showRecipe', compact('recipe', 'ingredients', 'quantity'));
+
+
+
     }
 
 }

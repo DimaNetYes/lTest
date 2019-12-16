@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-4 delimiter">
@@ -27,16 +28,19 @@
                     <div class="recipeDesc" style="margin-top: 40px;">{{$recipe->description}}</div>
                 </div>
 
-
                 <h3 style="margin-top: 40px;">Ингредиенты</h3>
-
+                <form action="{{action('Setting\IngredientController@editQuantity')}}" method="post" name="ingredients">
+                    {{csrf_field()}}
+                    <button style="display:none;"></button>
+                </form>
                 <table class="table">
                     <tbody>
                     <?php $superlogic = 0;?>
+
                     @foreach($ingredients as $val)
                         <tr>
                             <th scope="row">{{$val->name}}</th>
-                            <td>{{$quantity[$superlogic++]->quantity}}</td>
+                            <td class="quantity"><span onclick="cquantity()" style="padding:5px;" class="cquantity" data-ingredientId="{{$val->id}}" data-recipeId="{{$recipe->id}}">{{$quantity[$superlogic++]->quantity}}</span></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -44,6 +48,10 @@
             </div>
         </div>
     </div>
+
+
+    {{--<script type="text/javascript" src="{{asset('js/show.js')}}"></script>--}}
+    <script src="{{asset('js/show.js')}}"></script>
 @endsection
 
 

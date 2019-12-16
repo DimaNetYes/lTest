@@ -22,6 +22,7 @@ Route::get('/recipe', 'RecipeController@index')->name('recipe');
 Route::post('/recipe', ['as' => 'createRecipe', 'uses' => 'RecipeController@create']);
 
 Route::get('/showRecipe', array('as' => 'showRecipe', 'uses' => 'Instruments\ShowRecipeController@index'));
+Route::post('/showRecipe', array('as' => 'showRecipe', 'uses' => 'Setting\IngredientController@editQuantity'));
 Route::get('/editRecipe', 'Instruments\EditRecipeController@index')->name('edit');
 Route::post('/editRecipe', 'Instruments\EditRecipeController@edit')->name('editRecipe');
 Route::get('/deleteRecipe', array('as' => 'deleteRecipe', 'uses' => 'Instruments\DeleteRecipeController@index'));
@@ -36,3 +37,5 @@ Route::get('lists/createIngredient', function () {
 Route::get('lists/editIngredient', 'Setting\IngredientController@index')->name('lists/editIngredient');
 Route::post('lists/ingredients', 'Setting\IngredientController@edit');
 Route::get('lists/deleteIngredient', ['as' => 'lists/deleteIngredient', 'uses' => 'Setting\IngredientController@delete']);
+
+
